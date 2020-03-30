@@ -1,0 +1,120 @@
+body {
+  font-family: $font-base;
+  color: $primary-text;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+
+  .headerHero {
+    position: relative;
+    left: -25%;
+    top: 0;
+  }
+
+  .headerRight {
+    position: absolute;
+    right: 10%;
+
+    .navBar {
+      position: fixed;
+      right: 4rem;
+      background: white;
+
+      .loginNav {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 2rem;
+        font-size: 0.75rem;
+
+        a {
+          text-decoration: none;
+          color: $primary-text;
+        }
+
+        li:nth-of-type(2) a {
+          padding: 0.75rem 1.5rem;
+          border: 1px solid $primary-yellow;
+        }
+
+        li {
+          margin-left: 2rem;
+        }
+      }
+
+      .nav {
+        display: flex;
+
+        li {
+          margin-left: 4rem;
+        }
+      }
+
+    }
+
+
+    .headerCenter {
+      margin-top: 15rem;
+      text-align: center;
+
+      h1 {
+        font-size: 2rem;
+        line-height: 1.6;
+      }
+
+      img {
+        margin: 2rem 0;
+      }
+
+      ul {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 2rem;
+
+        a {
+          text-decoration: none;
+          color: $primary-text;
+          text-transform: uppercase;
+          font-size: 1.5rem;
+
+        }
+
+        li {
+          padding: 2rem 3rem;
+          min-width: 150px;
+          border: 1px solid $primary-text;
+        }
+      }
+
+    }
+
+  }
+
+}
+
+.threeCols {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  background: url("../../assets/3 Columns Background.png");
+
+  .colsEle {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    padding: 2rem;
+
+    h2{
+      font-size: 4rem;
+    }
+    h3{
+      font-weight: 400;
+      margin: 1.5rem 0;
+    }
+    p{
+      font-weight: 300;
+    }
+  }
+}
