@@ -1,20 +1,20 @@
 import React from 'react';
-import ColsEle from './HomeThreeColsEle'
+import ThreeColumnsElement from './HomeThreeColumnsEle'
 
-function HomeThreeCols() {
+function HomeThreeColumns() {
     return (
-    <div className={'threeCols'}>
-        <ColsEle
+    <div className={'threeColumnsElement'}>
+        <ThreeColumnsElement
         num={'10'}
         title={'Oddanych Worków'}
         text={'Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma. Aliquam erat volutpat.'}
         />
-        <ColsEle
+        <ThreeColumnsElement
             num={'5'}
             title={'Wspartych organizacji'}
             text={'Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma. Aliquam erat volutpat.'}
         />
-        <ColsEle
+        <ThreeColumnsElement
             num={'7'}
             title={'Zorganizowanych zbiórek'}
             text={'Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma. Aliquam erat volutpat.'}
@@ -24,4 +24,4 @@ function HomeThreeCols() {
     )
 }
 
-export default HomeThreeCols
+export default HomeThreeColumns

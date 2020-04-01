@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ColsEle(props) {
+function ThreeColumnsElement(props) {
     return (
         <div className={'colsEle'}>
             <h2>{props.num}</h2>
@@ -10,4 +10,4 @@ function ColsEle(props) {
     )
 }
 
-export default ColsEle
+export default ThreeColumnsElement
