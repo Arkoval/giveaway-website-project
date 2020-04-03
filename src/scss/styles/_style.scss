@@ -1,120 +1,404 @@
 body {
   font-family: $font-base;
   color: $primary-text;
+    font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1900 - 300)));
 }
+
+//@media screen and (max-width: 500px){
+//  html{
+//    font-size: 55%;
+//  }
+//}
+
+.navBar {
+  background: white;
+  padding: 2rem 2rem;
+
+  .loginNav {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+    font-size: 0.75rem;
+
+    a {
+      text-decoration: none;
+      color: $primary-text;
+    }
+
+    li:nth-of-type(2) a {
+      padding: 0.75rem 1.5rem;
+      border: 1px solid $primary-yellow;
+    }
+
+    li {
+      margin-left: 2rem;
+    }
+  }
+
+  .nav {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+
+    li {
+      margin-left: 4rem;
+    }
+  }
+
+}
+
 
 header {
   display: flex;
-  justify-content: space-between;
-  margin-top: 3rem;
+  justify-content: flex-end;
+  background: url("../../assets/Home-Hero-Image.jpg")-55%/contain no-repeat;
+  height: 100vh;
 
-  .headerHero {
-    position: relative;
-    left: -25%;
-    top: 0;
-  }
 
   .headerRight {
-    position: absolute;
-    right: 10%;
+    min-width: 50%;
+    margin-top: 12rem;
+    text-align: center;
 
-    .navBar {
-      position: fixed;
-      right: 4rem;
-      background: white;
-
-      .loginNav {
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 2rem;
-        font-size: 0.75rem;
-
-        a {
-          text-decoration: none;
-          color: $primary-text;
-        }
-
-        li:nth-of-type(2) a {
-          padding: 0.75rem 1.5rem;
-          border: 1px solid $primary-yellow;
-        }
-
-        li {
-          margin-left: 2rem;
-        }
-      }
-
-      .nav {
-        display: flex;
-
-        li {
-          margin-left: 4rem;
-        }
-      }
-
+    h1 {
+      font-size: 2rem;
+      line-height: 1.6;
     }
 
-
-    .headerCenter {
-      margin-top: 15rem;
-      text-align: center;
-
-      h1 {
-        font-size: 2rem;
-        line-height: 1.6;
-      }
-
-      img {
-        margin: 2rem 0;
-      }
-
-      ul {
-        display: flex;
-        justify-content: space-evenly;
-        margin-top: 2rem;
-
-        a {
-          text-decoration: none;
-          color: $primary-text;
-          text-transform: uppercase;
-          font-size: 1.5rem;
-
-        }
-
-        li {
-          padding: 2rem 3rem;
-          min-width: 150px;
-          border: 1px solid $primary-text;
-        }
-      }
-
+    img {
+      margin: 2rem 0;
     }
 
+    ul {
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 2rem;
+
+      .loginButton {
+        text-decoration: none;
+        color: $primary-text;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+
+      }
+
+      li {
+        padding: 2rem 3rem;
+        min-width: 150px;
+        border: 1px solid $primary-text;
+      }
+    }
   }
-
 }
 
-.threeCols {
+.threeColumnsBox {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
   text-align: center;
   background: url("../../assets/3 Columns Background.png");
 
-  .colsEle {
+  .threeColumnsElement {
     display: flex;
     flex-direction: column;
     width: 20%;
     padding: 2rem;
 
-    h2{
+    h2 {
       font-size: 4rem;
     }
-    h3{
+
+    h3 {
       font-weight: 400;
       margin: 1.5rem 0;
     }
-    p{
+
+    p {
       font-weight: 300;
+    }
+  }
+}
+
+.simpleStepsSection {
+  text-align: center;
+  margin: 4rem 0;
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  img {
+    margin: 2rem;
+  }
+
+  .SimpleStepsBox {
+    display: flex;
+    justify-content: space-evenly;
+    background: $primary-gray;
+    padding: 2rem;
+    margin-bottom: 5rem;
+
+
+    hr {
+      width: 50%;
+    }
+
+    .SimpleStepsElement {
+      max-width: 10%
+    }
+  }
+
+  .loginButton {
+    text-decoration: none;
+    color: $primary-text;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    padding: 2rem 3rem;
+    min-width: 150px;
+    border: 1px solid $primary-text;
+  }
+}
+
+.aboutSection {
+  text-align: center;
+  background: $primary-gray url("../../assets/People.jpg") 110%/contain no-repeat;
+  margin: 6rem auto;
+
+  .aboutBox {
+    padding: 10rem 5rem;
+    max-width: 42%;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+
+    img {
+      margin: 2rem;
+    }
+
+    .signature {
+      align-self: flex-end;
+    }
+  }
+}
+
+.homeButton {
+  border: 1px solid $primary-text;
+  background: white;
+  color: $primary-text;
+  padding: 0.5rem 1.75rem;
+  text-decoration: none;
+}
+
+.loginScreen {
+  text-align: center;
+  //margin: 4rem auto;
+  h1 {
+    font-size: 2rem;
+  }
+
+  img {
+    margin: 2rem 0;
+  }
+
+
+  .loginForm {
+    padding: 3rem 2rem;
+    background: $primary-gray;
+    max-width: 20%;
+    margin: 0 auto;
+    text-align: left;
+  }
+  p.wrong{
+    color: red;
+    font-size: 0.8rem;
+    margin-top: -0.5rem;
+    margin-left: 2.2rem;
+    margin-bottom: 1rem;
+  }
+  input.wrong{
+    border-bottom: 1px solid red!important;
+  }
+  .loginForm input {
+    display: block;
+    margin: 1rem auto;
+    width: 80%;
+    height: 2rem;
+    border: none;
+    border-bottom: 1.25px solid $secondary-gray;
+    background: $primary-gray;
+  }
+
+  .loginForm label {
+    margin-left: 2.25rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .loginButtons {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2rem 20rem;
+
+    a {
+      text-decoration: none;
+      color: $primary-text;
+      font-size: 1.25rem;
+      line-height: 2.5rem;
+    }
+
+    button {
+      border: 1px solid $primary-text;
+      background: white;
+      color: $primary-text;
+      padding: 0 1.5rem;
+      font-size: 1.25rem;
+    }
+  }
+}
+
+.logoutScreen {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10rem;
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  img {
+    margin: 2rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: $primary-text;
+    border: 1px solid $primary-text;
+    padding: 1rem 2rem;
+  }
+}
+.whoSection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem;
+  .whoNav{
+    margin: 2rem 0;
+    a{
+      margin: 0 2rem;
+    }
+  }
+  .whoComponents{
+  width: 60%;
+    .whoDescription{
+      width: 42%;
+      text-align: center;
+      margin: 2rem auto;
+    }
+    .whoComponentsElement{
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+.contactSection {
+  background: url("../../assets/Background-Contact-Form.jpg") left/cover no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .contactBox {
+    z-index: 1;
+    margin-right: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      margin: 2rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .contactForm {
+      width: 30vw;
+      display: flex;
+      flex-direction: column;
+
+      label {
+        display: block;
+        margin: 1rem 0;
+        font-weight: 600;
+      }
+
+      textarea {
+        width: 99%;
+        padding: 0.5rem 0;
+        border: none;
+        border-bottom: 1px solid $primary-text;
+        background-color: rgba(0, 0, 0, 0);
+        color: $secondary-gray;
+      }
+
+      input {
+        width: 97%;
+        padding: 0.5rem 0;
+        border: none;
+        border-bottom: 1px solid $primary-text;
+        background-color: rgba(0, 0, 0, 0);
+        color: $secondary-gray;
+      }
+
+      button {
+        text-align: center;
+        align-self: flex-end;
+        width: 5rem;
+        padding: 0.5rem 1.5rem;
+        margin-top: 1rem;
+        border: 1px solid $primary-text;
+        color: $primary-text;
+        background-color: rgba(0, 0, 0, 0);
+      }
+
+      .contactFormUpper {
+        display: flex;
+
+        div {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.contactSection::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 100%;
+  height: 100%;
+}
+
+footer {
+  text-align: center;
+  margin-top: 2rem;
+
+  h2 {
+    display: inline;
+    font-size: 1.25rem;
+  }
+
+  .footerIcons {
+    display: inline;
+    height: 2rem;
+    position: absolute;
+    right: 5%;
+
+    img {
+      margin-left: 1.5rem;
     }
   }
 }

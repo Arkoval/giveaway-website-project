@@ -1,12 +1,22 @@
 import React from "react";
 import HomeHeader from "./HomeHeader";
-import HomeThreeCols from './HomeThreeCols'
+import HomeThreeColumns from './HomeThreeColumns'
+import SimpleSteps from "./HomeSimpleSteps";
+import About from "./HomeAbout";
+import WhoWeHelp from "./HomeWho";
+import Footer from "./HomeFooter";
+import Contact from "./HomeContact";
 
 function Home(){
     return (
         <>
         <HomeHeader/>
-        <HomeThreeCols/>
+        <HomeThreeColumns/>
+        <SimpleSteps/>
+        <About/>
+        <WhoWeHelp/>
+        <Contact/>
+        <Footer/>
         </>
     )
 }

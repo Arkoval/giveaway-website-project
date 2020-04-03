@@ -1,9 +1,9 @@
 import React from 'react';
-import ThreeColumnsElement from './HomeThreeColumnsEle'
+import ThreeColumnsElement from './HomeThreeColumnsElement'
 
 function HomeThreeColumns() {
     return (
-    <div className={'threeColumnsElement'}>
+    <div className={'threeColumnsBox'}>
         <ThreeColumnsElement
         num={'10'}
         title={'Oddanych Worków'}

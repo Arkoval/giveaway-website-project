@@ -2,7 +2,7 @@ import React from 'react';
 
 function ThreeColumnsElement(props) {
     return (
-        <div className={'colsEle'}>
+        <div className={'threeColumnsElement'}>
             <h2>{props.num}</h2>
             <h3>{props.title}</h3>
             <p>{props.text}</p>
