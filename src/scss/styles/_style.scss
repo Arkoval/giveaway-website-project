@@ -282,14 +282,38 @@ header {
   flex-direction: column;
   align-items: center;
   padding: 4rem;
+  .whoHeader{
+    font-size: 2rem;
+  }
+  img{
+    margin: 2rem;
+  }
   .whoNav{
     margin: 2rem 0;
-    a{
+    button{
       margin: 0 2rem;
+      border: none;
+      font-size: 1.5rem;
+      background-color: white;
+      color: $primary-text;
+      cursor: pointer;
     }
   }
   .whoComponents{
   width: 60%;
+
+    .pagination{
+      display: flex;
+      justify-content: center;
+      li{
+        margin: 2rem;
+        cursor: pointer;
+      }
+      a.active{
+        padding: 0.75rem 0.75rem;
+        border: 1px solid $primary-text;
+      }
+    }
     .whoDescription{
       width: 42%;
       text-align: center;
@@ -298,6 +322,11 @@ header {
     .whoComponentsElement{
       display: flex;
       justify-content: space-between;
+      border-bottom: 1px solid $secondary-gray;
+      padding: 2rem;
+    }
+    .whoComponentsElement:last-of-type{
+      border: none;
     }
   }
 }
@@ -321,6 +350,12 @@ header {
 
     h1 {
       font-size: 2rem;
+    }
+    h2.good{
+      color: limegreen;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      text-align: center;
     }
 
     .contactForm {
@@ -370,6 +405,15 @@ header {
           width: 100%;
         }
       }
+      p.wrong{
+        color: red;
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+      }
+      input.wrong, textarea.wrong{
+        border-bottom: 1px solid red!important;
+      }
+
     }
   }
 }

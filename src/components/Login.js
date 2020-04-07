@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {NavLink} from "react-router-dom";
+import * as firebase from "firebase";
 
 export default class Login extends Component {
     constructor(props) {
@@ -7,8 +8,8 @@ export default class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            validMail: false,
-            validPwd: false,
+            validMail: true,
+            validPwd: true,
         }
     }
 
@@ -18,11 +19,22 @@ export default class Login extends Component {
 
     };
     handleSubmit = () => {
-        const validMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email);
+        const validMail = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/.test(this.state.email);
         const validPwd = this.state.password.length >= 6;
 
-        validPwd ? console.log('Dobre hasło') : this.setState({validPwd: true});
-        validMail ? console.log('Dobry mail') : this.setState({validMail: true});
+        validPwd ? this.setState({validPwd:true}) : this.setState({validPwd: false});
+        validMail ? this.setState({validMail:true}) : this.setState({validMail: false});
+
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(
+            console.log('sukces')
+        )
+            .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
+
     }
 
     render() {
@@ -34,25 +46,27 @@ export default class Login extends Component {
                     {this.state.validMail ?
                         <>
                             <label htmlFor="email">Email</label>
+                            <input type="email" name={'email'} value={this.state.email}/>
+                        </>
+                    :
+                        <>
+                            <label htmlFor="email">Email</label>
                             <input className={'wrong'} type="email" name={'email'} value={this.state.email}/>
                             <p className={'wrong'}>Podany email jest nieprawidłowy!</p>
                         </>
-                        :
-                        <>
-                            <label htmlFor="email">Email</label>
-                            <input type="email" name={'email'} value={this.state.email}/>
-                        </>}
+                    }
                     {this.state.validPwd ?
+                        <>
+                            <label htmlFor="password">Hasło</label>
+                            <input type="password" name={'password'} value={this.state.password}/>
+                        </>
+                    :
                         <>
                             <label htmlFor="password">Hasło</label>
                             <input type="password" name={'password'} className={'wrong'} value={this.state.password}/>
                             <p className={'wrong'}>Podane hasło jest za krótkie</p>
                         </>
-                        :
-                        <>
-                            <label htmlFor="password">Hasło</label>
-                            <input type="password" name={'password'} value={this.state.password}/>
-                        </>}
+                    }
                 </form>
                 <div className="loginButtons">
                     <NavLink to={'/rejestracja'}>Załóż Konto</NavLink>
