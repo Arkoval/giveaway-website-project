@@ -1,8 +1,10 @@
 import React, {Component} from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import * as firebase from "firebase";
+import actions from "../actions";
+import {connect} from "react-redux";
 
-export default class Register extends Component {
+class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,6 +15,7 @@ export default class Register extends Component {
             validPwd: true,
             validPwd2: true,
             validAll: false,
+            isLogged: false,
         }
     }
 
@@ -32,7 +35,12 @@ export default class Register extends Component {
         validPwd2 ? this.setState({validPwd2: true}) : this.setState({validPwd2: false});
 
         validAll && firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(
-
+            user =>{
+                if(user) {
+                    this.setState({isLogged: !this.state.isLogged})
+                    this.props.signer(user.user.email)
+                }else console.log('error')
+            }
         ).catch(function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -41,44 +49,47 @@ export default class Register extends Component {
     }
 
     render() {
+        if(this.state.isLogged) {
+            return <Redirect to={`/user/${this.state.email}`}/>
+        }else
         return (
             <div className={'loginScreen'}>
                 <h1>Załóż konto</h1>
                 <img src={require("../assets/Decoration.svg")} alt=""/>
-                <form action="" className={'loginForm'} onChange={this.handleFormChange}>
+                <form action="" className={'loginForm'} >
                     {this.state.validMail ?
                         <>
                             <label htmlFor="email">Email</label>
-                            <input type="email" name={'email'} value={this.state.email}/>
+                            <input type="email" name={'email'} value={this.state.email} onChange={this.handleFormChange}/>
                         </>
                     :
                         <>
                             <label htmlFor="email">Email</label>
-                            <input className={'wrong'} type="email" name={'email'} value={this.state.email}/>
+                            <input className={'wrong'} type="email" name={'email'} value={this.state.email} onChange={this.handleFormChange}/>
                             <p className={'wrong'}>Podany email jest nieprawidłowy</p>
                         </>
                     }
                     {this.state.validPwd ?
                         <>
                             <label htmlFor="password">Hasło</label>
-                            <input type="password" name={'password'} value={this.state.password}/>
+                            <input type="password" name={'password'} value={this.state.password} onChange={this.handleFormChange}/>
                         </>
                     :
                         <>
                             <label htmlFor="password">Hasło</label>
-                            <input type="password" name={'password'} className={'wrong'} value={this.state.password}/>
+                            <input type="password" name={'password'} className={'wrong'} value={this.state.password} onChange={this.handleFormChange}/>
                             <p className={'wrong'}>Podane hasło jest za krótkie</p>
                         </>
                     }
                     {this.state.validPwd2 ?
                         <>
                             <label htmlFor="password2">Hasło</label>
-                            <input type="password" name={'password2'} value={this.state.password2}/>
+                            <input type="password" name={'password2'} value={this.state.password2} onChange={this.handleFormChange}/>
                         </>
                     :
                         <>
                             <label htmlFor="password2">Hasło</label>
-                            <input type="password" name={'password2'} className={'wrong'} value={this.state.password2}/>
+                            <input type="password" name={'password2'} className={'wrong'} value={this.state.password2} onChange={this.handleFormChange}/>
                             <p className={'wrong'}>Podane hasła różnią się</p>
                         </>
                     }
@@ -91,3 +102,11 @@ export default class Register extends Component {
         )
     }
 }
+const mapDispatchToProps = dispatch => ({
+    signer: item => dispatch(actions.signIn(item))
+});
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Register)

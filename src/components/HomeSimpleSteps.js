@@ -1,7 +1,6 @@
 import React from "react";
 import SimpleStepsElement from './HomeSimpleStepsElement';
 import {NavLink} from "react-router-dom";
-import Icon1 from  '../assets/Icon-1.svg'
 
 
 function SimpleSteps() {
@@ -31,7 +30,7 @@ function SimpleSteps() {
                     content={'kurier przyjedzie w dogodnym terminie'}
                 />
             </div>
-            <NavLink className={'loginButton'} to={'/logowanie'}>Oddaj 2211 rzeczy</NavLink>
+            <NavLink className={'loginButton'} to={'/logowanie'}>Oddaj rzeczy</NavLink>
         </div>
     )
 }

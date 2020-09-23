@@ -1,8 +1,11 @@
 import React, {Component} from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
+import {connect} from "react-redux";
+import actions from '../actions/index'
 import * as firebase from "firebase";
 
-export default class Login extends Component {
+
+class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -10,6 +13,7 @@ export default class Login extends Component {
             password: '',
             validMail: true,
             validPwd: true,
+            isLogged: false,
         }
     }
 
@@ -26,44 +30,52 @@ export default class Login extends Component {
         validMail ? this.setState({validMail:true}) : this.setState({validMail: false});
 
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(
-            console.log('sukces')
+            user =>{
+                if(user) {
+                    this.setState({isLogged: !this.state.isLogged})
+                    console.log(user.user.email);
+                    this.props.signer(user.user.email)
+                }else console.log('not logged in')
+            }
         )
             .catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            // ...
+            console.log(errorCode, errorMessage)
         });
 
     }
 
     render() {
-        return (
+        if (this.state.isLogged) {
+            return <Redirect to={`/user/${this.state.email}`}/>;
+        }else return (
             <div className={'loginScreen'}>
                 <h1>Zaloguj</h1>
                 <img src={require("../assets/Decoration.svg")} alt=""/>
-                <form action="" className={'loginForm'} onChange={this.handleFormChange}>
+                <form action="" className={'loginForm'} >
                     {this.state.validMail ?
                         <>
                             <label htmlFor="email">Email</label>
-                            <input type="email" name={'email'} value={this.state.email}/>
+                            <input type="email" name={'email'} value={this.state.email} onChange={this.handleFormChange}/>
                         </>
                     :
                         <>
                             <label htmlFor="email">Email</label>
-                            <input className={'wrong'} type="email" name={'email'} value={this.state.email}/>
+                            <input className={'wrong'} type="email" name={'email'} value={this.state.email} onChange={this.handleFormChange}/>
                             <p className={'wrong'}>Podany email jest nieprawidłowy!</p>
                         </>
                     }
                     {this.state.validPwd ?
                         <>
                             <label htmlFor="password">Hasło</label>
-                            <input type="password" name={'password'} value={this.state.password}/>
+                            <input type="password" name={'password'} value={this.state.password} onChange={this.handleFormChange}/>
                         </>
                     :
                         <>
                             <label htmlFor="password">Hasło</label>
-                            <input type="password" name={'password'} className={'wrong'} value={this.state.password}/>
+                            <input type="password" name={'password'} className={'wrong'} value={this.state.password} onChange={this.handleFormChange}/>
                             <p className={'wrong'}>Podane hasło jest za krótkie</p>
                         </>
                     }
@@ -76,3 +88,11 @@ export default class Login extends Component {
         )
     }
 }
+const mapDispatchToProps = dispatch => ({
+    signer: item => dispatch(actions.signIn(item))
+});
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Login)

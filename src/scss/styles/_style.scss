@@ -1,7 +1,7 @@
 body {
   font-family: $font-base;
   color: $primary-text;
-    font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1900 - 300)));
+  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1900 - 300)));
 }
 
 //@media screen and (max-width: 500px){
@@ -11,7 +11,7 @@ body {
 //}
 
 .navBar {
-  background: white;
+  //background: white;
   padding: 2rem 2rem;
 
   .loginNav {
@@ -39,26 +39,117 @@ body {
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
+    
 
     li {
       margin-left: 4rem;
+      @media screen and (max-width: 780px) {
+        margin-left: 2rem;
+        margin-bottom: 1.5rem;
+        // background-color: red;
+      }
     }
   }
-
+  .hidden{
+    display: none;
+  }
+  .activeNav{
+    height: 500px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    font-size: 1.5rem;
+    position: absolute;
+    background-color: #ffffff;
+    border-bottom: 2px solid black;
+    .nav{
+      margin-top: 7rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+  }
 }
 
+
+  
+.burgerBtn{
+  position: absolute;
+  top: 2%;
+  left: 5%;
+  background-color: transparent;
+  padding: 10px;
+  border: 0;
+  margin: 0;
+  z-index: 1;
+}
+.burgerBtn-box{
+  width: 40px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+}
+@mixin burger-line{
+  width: 100%;
+  height: 3px;
+  background-color: $primary-text;
+  position: absolute;
+}
+
+.burgerBtn-inner{
+  @include burger-line;
+
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.burgerBtn-inner::before,
+.burgerBtn-inner::after {
+  @include burger-line;
+
+  content: '';
+  left: 0;
+  transition: transform .2s ease-in-out;
+}
+.burgerBtn-inner::before{
+  top: -10px;
+}
+.burgerBtn-inner::after{
+  top: 10px;
+}
+.burgerBtn-active .burgerBtn-inner{
+  background-color: transparent;
+}
+.burgerBtn-active .burgerBtn-inner::before{
+  transform: translateY(10px) rotate(45deg);
+}
+.burgerBtn-active .burgerBtn-inner::after{
+  transform: translateY(-10px) rotate(-45deg);
+}
 
 header {
   display: flex;
   justify-content: flex-end;
   background: url("../../assets/Home-Hero-Image.jpg")-55%/contain no-repeat;
   height: 100vh;
+  @media screen and (max-width: 1180px) {
+    background: none;
+    justify-content: center;
+  }
+  @media screen and (max-width: 410px){
+    margin-bottom: 2rem;
+  }
 
 
   .headerRight {
     min-width: 50%;
     margin-top: 12rem;
     text-align: center;
+    @media screen and (max-width: 1180px){
+      margin-top: 3rem;
+      max-width: 80%;
+    }
 
     h1 {
       font-size: 2rem;
@@ -72,6 +163,7 @@ header {
     ul {
       display: flex;
       justify-content: space-evenly;
+      flex-wrap: wrap;
       margin-top: 2rem;
 
       .loginButton {
@@ -79,6 +171,10 @@ header {
         color: $primary-text;
         text-transform: uppercase;
         font-size: 1.5rem;
+        @media screen and (max-width: 1180px){
+          font-size: 1rem;
+        }
+        
 
       }
 
@@ -86,6 +182,11 @@ header {
         padding: 2rem 3rem;
         min-width: 150px;
         border: 1px solid $primary-text;
+        margin-bottom: 2rem;
+        @media screen and (max-width: 324px){
+          margin-bottom: 1rem;
+          padding: 1.5rem 2rem;
+          }
       }
     }
   }
@@ -97,12 +198,18 @@ header {
   flex-wrap: wrap;
   text-align: center;
   background: url("../../assets/3 Columns Background.png");
+  
 
   .threeColumnsElement {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    max-width: 25%;
     padding: 2rem;
+    @media screen and (max-width: 500px){
+      min-width: 45%;
+    }
 
     h2 {
       font-size: 4rem;
@@ -121,7 +228,7 @@ header {
 
 .simpleStepsSection {
   text-align: center;
-  margin: 4rem 0;
+  padding: 4rem 0;
 
   h1 {
     font-size: 2rem;
@@ -134,9 +241,14 @@ header {
   .SimpleStepsBox {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
     background: $primary-gray;
     padding: 2rem;
     margin-bottom: 5rem;
+    @media screen and (max-width: 780px){
+      margin-bottom: 4rem;
+      padding: 1.5rem;
+    }
 
 
     hr {
@@ -144,7 +256,10 @@ header {
     }
 
     .SimpleStepsElement {
-      max-width: 10%
+      max-width: 10%;
+      @media screen and (max-width: 780px){
+        max-width: 80%;
+      }
     }
   }
 
@@ -154,15 +269,19 @@ header {
     text-transform: uppercase;
     font-size: 1.5rem;
     padding: 2rem 3rem;
-    min-width: 150px;
+    min-width: 50%;
     border: 1px solid $primary-text;
+    
   }
 }
 
 .aboutSection {
   text-align: center;
   background: $primary-gray url("../../assets/People.jpg") 110%/contain no-repeat;
-  margin: 6rem auto;
+  margin: 1rem auto;
+  @media screen and (max-width: 1780px){
+    background-image: none;
+  }
 
   .aboutBox {
     padding: 10rem 5rem;
@@ -170,6 +289,11 @@ header {
     display: flex;
     flex-direction: column;
     font-size: 1.5rem;
+    @media screen and (max-width: 1780px){
+      max-width: 80%;
+      padding: 2rem 2rem;
+      margin: 0 auto;
+    }
 
     img {
       margin: 2rem;
@@ -208,16 +332,19 @@ header {
     margin: 0 auto;
     text-align: left;
   }
-  p.wrong{
+
+  p.wrong {
     color: red;
     font-size: 0.8rem;
     margin-top: -0.5rem;
     margin-left: 2.2rem;
     margin-bottom: 1rem;
   }
-  input.wrong{
-    border-bottom: 1px solid red!important;
+
+  input.wrong {
+    border-bottom: 1px solid red !important;
   }
+
   .loginForm input {
     display: block;
     margin: 1rem auto;
@@ -244,6 +371,7 @@ header {
       color: $primary-text;
       font-size: 1.25rem;
       line-height: 2.5rem;
+      
     }
 
     button {
@@ -277,65 +405,103 @@ header {
     padding: 1rem 2rem;
   }
 }
-.whoSection{
+
+.whoSection {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 4rem;
-  .whoHeader{
+
+  .whoHeader {
     font-size: 2rem;
   }
-  img{
+
+  img {
     margin: 2rem;
   }
-  .whoNav{
+
+  .whoNav {
     margin: 2rem 0;
-    button{
+    @media screen and (max-width: 740px) {
+      text-align: center;
+      }
+
+    button {
       margin: 0 2rem;
       border: none;
       font-size: 1.5rem;
       background-color: white;
       color: $primary-text;
       cursor: pointer;
+      @media screen and (max-width: 740px) {
+      font-size: 1rem;
+      margin: 1rem 1rem
+      }
     }
   }
-  .whoComponents{
-  width: 60%;
 
-    .pagination{
+  .whoComponents {
+    width: 60%;
+    @media screen and (max-width: 740px) {
+      width: 90%;
+        }
+
+    .pagination {
       display: flex;
       justify-content: center;
-      li{
+
+      li {
         margin: 2rem;
         cursor: pointer;
       }
-      a.active{
+
+      a.active {
         padding: 0.75rem 0.75rem;
         border: 1px solid $primary-text;
       }
     }
-    .whoDescription{
+
+    .whoDescription {
       width: 42%;
       text-align: center;
       margin: 2rem auto;
+      @media screen and (max-width: 740px) {
+      width: 80%;
+        }
     }
-    .whoComponentsElement{
+
+    .whoComponentsElement {
       display: flex;
       justify-content: space-between;
       border-bottom: 1px solid $secondary-gray;
       padding: 2rem;
+      @media screen and (max-width: 320px) {
+        padding: 1rem 0;
+          }
+      @media screen and (max-width: 1700px) {
+        div + p {
+          margin-left: 1rem;
+          padding-left: 2rem;
+        }
+          }
     }
-    .whoComponentsElement:last-of-type{
+
+    .whoComponentsElement:last-of-type {
       border: none;
     }
   }
 }
+
 .contactSection {
   background: url("../../assets/Background-Contact-Form.jpg") left/cover no-repeat;
   height: 100vh;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  
+  @media screen and (max-width:425px) {
+    justify-content: center;
+  }
 
   .contactBox {
     z-index: 1;
@@ -344,6 +510,10 @@ header {
     flex-direction: column;
     align-items: center;
 
+    @media screen and (max-width: 425px) {
+      margin:0;
+    }
+
     img {
       margin: 2rem;
     }
@@ -351,7 +521,8 @@ header {
     h1 {
       font-size: 2rem;
     }
-    h2.good{
+
+    h2.good {
       color: limegreen;
       margin-bottom: 1.5rem;
       font-weight: 600;
@@ -362,6 +533,10 @@ header {
       width: 30vw;
       display: flex;
       flex-direction: column;
+
+      @media screen and (max-width:425px) {
+        width: 90%;
+      }
 
       label {
         display: block;
@@ -405,13 +580,15 @@ header {
           width: 100%;
         }
       }
-      p.wrong{
+
+      p.wrong {
         color: red;
         font-size: 0.8rem;
         margin-top: 0.5rem;
       }
-      input.wrong, textarea.wrong{
-        border-bottom: 1px solid red!important;
+
+      input.wrong, textarea.wrong {
+        border-bottom: 1px solid red !important;
       }
 
     }
@@ -440,9 +617,190 @@ footer {
     height: 2rem;
     position: absolute;
     right: 5%;
+    @media screen and (max-width:500px) {
+      img {
+        visibility: hidden;
+      }
+    }
 
     img {
       margin-left: 1.5rem;
+    }
+  }
+}
+
+.headerGive {
+  display: flex;
+  justify-content: flex-end;
+
+  .homeGiveHero {
+    position: absolute;
+    left: 0;
+    top: -10%;
+    background: url("../../assets/Form-Hero-Image.jpg") left/contain no-repeat;
+    height: 100%;
+    width: 100vh;
+    z-index: -1;
+  }
+
+  .headerGiveRight {
+    min-width: 50%;
+    margin: 4rem 0;
+    text-align: center;
+
+    h1, h2 {
+      font-size: 2rem;
+      line-height: 1.6;
+    }
+
+    img {
+      margin: 2rem 0;
+    }
+
+    ul {
+      display: flex;
+      justify-content: center;
+      margin-top: 4rem;
+
+      li {
+        margin: 2rem 0.25rem;
+        min-width: 150px;
+        position: relative;
+      }
+
+      li::after {
+        position: absolute;
+        content: '';
+        padding: 4rem 4rem;
+        border: 1px solid $primary-text;
+        transform: rotate(45deg);
+        left: 6%;
+        top: -1rem;
+      }
+    }
+  }
+}
+
+.giveForm {
+  background: url("../../assets/Background-Form.jpg") bottom/contain no-repeat;
+  position: sticky;
+  width: 100%;
+  height: 100vh;
+
+  .giveImportant {
+    background: $primary-yellow;
+    margin: 2rem 0;
+    padding: 3rem 4rem;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .giveFormStep {
+    margin: 0 4rem;
+
+    p {
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      label{
+        vertical-align: 50%;
+        margin: 0 2rem;
+      }
+      input {
+        appearance: none;
+        border: 1px solid $primary-text;
+        padding: 1rem;
+      }
+      input:checked{
+        background: $primary-yellow;
+      }
+    }
+
+    .formElement {
+      margin-bottom: 1rem;
+      h2{
+        font-weight: 600;
+        margin: 2rem 0;
+      }
+      input[type='text']{
+        background: transparent;
+        border: 1px solid $primary-text;
+        padding: 0.5rem 5rem;
+        font-size: 1rem;
+      }
+      .formFlexContainer{
+        width: 40%;
+        display: flex;
+        flex-wrap: wrap;
+
+        label{
+          position: relative;
+          margin-top: 1rem;
+          margin-right: 3rem;
+          border: 1px solid $primary-text;
+          background: transparent;
+          padding: 1rem 1rem;
+          z-index: 1;
+
+          input{
+            appearance: none;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            position: absolute;
+            top: -0.2rem;
+            left: -0.25rem;
+          }
+          input .active{
+            background: #FAD648;
+          }
+        }
+      }
+
+      .dropdown{
+        //margin-left: 2rem;
+        background: transparent;
+        width: 12%;
+        display: inline-block;
+        label{
+          margin-left: 2rem;
+        }
+        select{
+          appearance: none;
+          width: 100%;
+          padding: 0 2rem;
+          height: 2rem;
+          background: url("../../assets/Icon-Arrow-Down.svg")right/contain no-repeat;
+          background-size: 2rem;
+          text-align: right;
+        }
+        option{
+          background: $primary-gray;
+          transform: translateY(2rem);
+        }
+      }
+    }
+    .formFlexContainer{
+      background: red;
+      display: flex;
+      width: 60%;
+      .formElement{
+
+      }
     }
   }
 }

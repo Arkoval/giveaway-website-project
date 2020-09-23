@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-
+// Część do dalszego rozwoju
 export default class Contact extends Component {
     constructor(props) {
         super(props);
@@ -63,21 +63,21 @@ export default class Contact extends Component {
                         <img src={require("../assets/Decoration.svg")} alt=""/>
                         {this.state.response &&
                         <h2 className={'good'}>Wiadomość została wysłana!<br/>Wkrótce się skontaktujemy</h2>}
-                        <form action="" className={'contactForm'} onChange={this.handleFormChange}>
+                        <form action="" className={'contactForm'} >
                             <div className="contactFormUpper">
                                 <div className={'contactFormName'}>
                                     {this.state.validName ?
                                         <>
                                             <label htmlFor="name">Wpisz swoje imię</label>
                                             <input type="text" placeholder={'Krzysztof'} value={this.state.name}
-                                                   name={'name'}/>
+                                                   name={'name'} onChange={this.handleFormChange}/>
                                         </>
                                         :
                                         <>
                                             <label htmlFor="name">Wpisz swoje imię</label>
                                             <input className={'wrong'} type="text" placeholder={'Krzysztof'}
                                                    value={this.state.name}
-                                                   name={'name'}/>
+                                                   name={'name'} onChange={this.handleFormChange}/>
                                             <p className={'wrong'}>Uzupełnij pole</p>
                                         </>
                                     }
@@ -87,13 +87,13 @@ export default class Contact extends Component {
                                         <>
                                             <label htmlFor="email">Wpisz swój email</label>
                                             <input type="email" placeholder={'Abc@xyz.pl'} value={this.state.email}
-                                                   name={'email'}/>
+                                                   name={'email'} onChange={this.handleFormChange}/>
                                         </>
                                         :
                                         <>
                                             <label htmlFor="email">Wpisz swój email</label>
                                             <input className={'wrong'} type="email" placeholder={'Abc@xyz.pl'} value={this.state.email}
-                                                   name={'email'}/>
+                                                   name={'email'} onChange={this.handleFormChange}/>
                                                    <p className={'wrong'}>Podany email jest nieprawidłowy</p>
                                         </>
 
@@ -110,6 +110,7 @@ export default class Contact extends Component {
                                     value={this.state.text}
                                     name={'text'}
                                     placeholder={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
+                               onChange={this.handleFormChange}
                                 />
                                 </>
                                     :
@@ -122,6 +123,7 @@ export default class Contact extends Component {
                                     name={'text'}
                                     className={'wrong'}
                                     placeholder={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
+                                   onChange={this.handleFormChange}
                                     />
                                     <p className="wrong">Wiadomość musi mieć conajmniej 120 znaków</p>
                                     </>
